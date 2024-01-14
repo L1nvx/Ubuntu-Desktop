@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Iosevka Nerd Font 10
+font pango:RobotoMono Nerd Font 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -52,7 +52,6 @@ floating_modifier $mod
 bindsym $mod+Shift+p exec "flameshot gui"
 # start a terminal
 bindsym $mod+Return exec ~/bin/alacritty
-
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -190,7 +189,7 @@ bar {
         i3bar_command i3bar -t
         height 26
         position top
-        font pango:Iosevka Nerd Font 10
+        font pango:RobotoMono Nerd Font 10
        	colors {
 		statusline #EEEEEE
                 background #1C1D2B88
@@ -205,7 +204,7 @@ for_window [class="^.*"] border pixel 1
 gaps inner 2
 gaps outer 2
 
-client.focused  #82c8ff #9cdff7 #dddddd
+client.focused  #82c8ff #9ea832 #dddddd
 client.focused_inactive #333333 #333333 #888888
 client.unfocused #333333 #333333 #888888
 client.urgent #900000 #900000 #ffffff
